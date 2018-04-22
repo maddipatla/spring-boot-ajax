@@ -16,6 +16,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Maddiaptla Chandra Babu
+ * @date 20-Apr-2018
+ */
 @RestController
 public class SearchController {
 
@@ -30,13 +34,13 @@ public class SearchController {
     public ResponseEntity<?> getSearchResultsViaAJAX(@Valid @RequestBody SearchCriteria searchCriteria, Errors errors) {
         AJAXResponseBody result = new AJAXResponseBody();
 
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             result.setMessage(errors.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.joining(",")));
             return ResponseEntity.badRequest().body(result);
         }
 
         List<User> users = userService.getListOfUsersByUsername(searchCriteria.getUsername());
-        if(users.isEmpty())
+        if (users.isEmpty())
             result.setMessage("No users found!!!");
         else
             result.setMessage("Success!!!");

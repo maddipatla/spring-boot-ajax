@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Maddiaptla Chandra Babu
+ * @date 20-Apr-2018
+ */
 @Service
 public class UserService {
     private List<User> users;

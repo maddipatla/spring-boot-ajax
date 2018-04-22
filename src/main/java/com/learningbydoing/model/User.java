@@ -1,5 +1,9 @@
 package com.learningbydoing.model;
 
+/**
+ * @author Maddiaptla Chandra Babu
+ * @date 20-Apr-2018
+ */
 public class User {
     private String username;
     private String password;

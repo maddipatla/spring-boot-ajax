@@ -2,6 +2,10 @@ package com.learningbydoing.model;
 
 import java.util.List;
 
+/**
+ * @author Maddiaptla Chandra Babu
+ * @date 20-Apr-2018
+ */
 public class AJAXResponseBody {
     private String message;
     private List<User> users;
