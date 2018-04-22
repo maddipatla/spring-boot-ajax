@@ -46,7 +46,6 @@ public class SearchController {
             result.setMessage("Success!!!");
 
         result.setUsers(users);
-
         return ResponseEntity.ok(result);
     }
 }

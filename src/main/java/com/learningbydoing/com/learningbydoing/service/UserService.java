@@ -1,6 +1,8 @@
 package com.learningbydoing.com.learningbydoing.service;
 
+import com.learningbydoing.com.learningbydoing.dao.UserRepository;
 import com.learningbydoing.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -14,17 +16,17 @@ import java.util.stream.Collectors;
  */
 @Service
 public class UserService {
-    private List<User> users;
+    private UserRepository userRepository;
 
-    public List<User> getListOfUsersByUsername(String username) {
-        return users.stream().filter(x -> x.getUsername().equalsIgnoreCase(username)).collect(Collectors.toList());
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    @PostConstruct
-    private void init() {
-        users = new ArrayList<>();
-        users.add(new User("Chandu", "ChanduPASS", "chandu@mail.com"));
-        users.add(new User("Ram", "RamPASS", "ram@mail.com"));
-        users.add(new User("Ashok", "AshokPASS", "ashok@mail.com"));
+    public List<User> getListOfUsersByUsername(String username) {
+        List<User> users = userRepository.findByUsername(username);
+        if (!users.isEmpty())
+            return users;
+        return new ArrayList<>(1);
     }
 }
